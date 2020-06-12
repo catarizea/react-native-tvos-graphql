@@ -50,7 +50,7 @@ const generateGroup = (no, func, join = true) => {
 
 const featuredPool = generateGroup(
   FEATURED,
-  () => faker.random.number({min: 1, max: MAX}),
+  () => faker.random.number({ min: 1, max: MAX }),
   false,
 );
 
@@ -66,7 +66,7 @@ for (let i = 1; i <= MAX; i += 1) {
     id: i,
     title: startCase(faker.lorem.words()),
     released: faker.date.past(),
-    genre: generateGroup(faker.random.number({min: 1, max: 3}), () =>
+    genre: generateGroup(faker.random.number({ min: 1, max: 3 }), () =>
       faker.random.arrayElement(CATEGORIES),
     ),
     rated: faker.random.arrayElement([
@@ -78,7 +78,7 @@ for (let i = 1; i <= MAX; i += 1) {
       'NR',
       'UR',
     ]),
-    country: generateGroup(faker.random.number({min: 1, max: 3}), () =>
+    country: generateGroup(faker.random.number({ min: 1, max: 3 }), () =>
       faker.random.arrayElement([
         'USA',
         'UK',
@@ -88,10 +88,10 @@ for (let i = 1; i <= MAX; i += 1) {
       ]),
     ),
     production: faker.company.companyName(),
-    runtime: faker.random.number({min: 60, max: 180}),
+    runtime: faker.random.number({ min: 60, max: 180 }),
     director: faker.name.findName(),
     writer: faker.name.findName(),
-    actors: generateGroup(faker.random.number({min: 4, max: 8}), () =>
+    actors: generateGroup(faker.random.number({ min: 4, max: 8 }), () =>
       faker.name.findName(),
     ),
     plot: faker.lorem.paragraph(),
@@ -109,6 +109,12 @@ for (let i = 1; i <= MAX; i += 1) {
 
 fs.writeFile(
   `${__dirname}/../backend/dataSet.json`,
-  ,
-  () => console.log('dataSet generated'),
+  JSON.stringify(dataSet, null, 2),
+  () => console.log('dataSet.json file generated'),
+);
+
+fs.writeFile(
+  `${__dirname}/../backend/activation.json`,
+  JSON.stringify({ devices: [] }, null, 2),
+  () => console.log('activation.json file generated'),
 );
