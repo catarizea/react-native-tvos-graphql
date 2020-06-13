@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TabBarIOS } from 'react-native';
 
-import { StoreContext } from '../store/StoreProvider';
+import { StoreContext } from '../store/reducer/StoreProvider';
 import Activation from '../screens/Activation/index';
 import Home from '../screens/Home/index';
 import Settings from '../screens/Settings/index';

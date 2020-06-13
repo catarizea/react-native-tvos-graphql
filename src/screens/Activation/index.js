@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import paths from '../../constants/apiPaths';
 import deviceInfo from '../../constants/deviceInfo';
-import { StoreContext } from '../../store/StoreProvider';
-import { logIn } from '../../store/actions';
+import { StoreContext } from '../../store/reducer/StoreProvider';
+import { logIn } from '../../store/reducer/actions';
 import ActivationScreen from './Activation';
 
 const options = { headers: { uuid: deviceInfo.uuid } };
@@ -45,7 +45,6 @@ const ActivationContainer = () => {
         const code = await fetchCode();
 
         if (code) {
-          console.log('activation code', code);
           setActivationCode(code);
         }
 

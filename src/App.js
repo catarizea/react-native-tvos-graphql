@@ -1,26 +1,31 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { ApolloProvider } from '@apollo/react-hooks';
 import { IntlProvider } from 'react-intl';
 import localeData from './i18n/translation.json';
 import get from 'lodash.get';
 
-import client from './utils/apolloClient';
 import deviceLocale from './constants/deviceLocale';
-import StoreProvider from './store/StoreProvider';
+import StoreProvider from './store/reducer/StoreProvider';
+import ApolloProvider from './store/apollo/Provider';
 import Navigator from './navigator';
+import { ignored } from './constants/yellowBox';
 
 const language = get(deviceLocale, '[0].languageCode', 'en');
 const messages = localeData[language] || localeData.en;
 
-const App = () => (
-  <IntlProvider locale={language} messages={messages} textComponent={Text}>
-    <ApolloProvider client={client}>
+console.ignoredYellowBox = ignored;
+console.disableYellowBox = true;
+
+const App = () => {
+  return (
+    <IntlProvider locale={language} messages={messages} textComponent={Text}>
       <StoreProvider>
-        <Navigator />
+        <ApolloProvider>
+          <Navigator />
+        </ApolloProvider>
       </StoreProvider>
-    </ApolloProvider>
-  </IntlProvider>
-);
+    </IntlProvider>
+  );
+};
 
 export default App;

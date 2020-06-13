@@ -1,3 +1,3 @@
-import theme from './themes/luxurious';
+import theme from './themes/clean';
 
 export default theme;

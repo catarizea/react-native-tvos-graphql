@@ -18,7 +18,7 @@ export const generateUniqueKeys = (howMany = COMPONENTS_COUNTER) => {
   return uniqueKeys;
 };
 
-export const getColumnsNumber = (childType) => {
+export const getColumnsNumber = childType => {
   const boxWidth = theme[childType].box.outerWidth;
   return Math.floor(device.width / boxWidth);
 };
