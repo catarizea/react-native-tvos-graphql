@@ -2,10 +2,10 @@ import styled from 'styled-components/native';
 import theme from '../../theme';
 
 export const OuterBox = styled.View`
-  height: ${(props) => props.outerHeight};
-  width: ${(props) => props.outerWidth};
-  margin-left: ${(props) => props.firstMarginLeft};
-  margin-right: ${(props) => props.lastMarginRight};
+  height: ${props => props.outerHeight};
+  width: ${props => props.outerWidth};
+  margin-left: ${props => props.firstMarginLeft};
+  margin-right: ${props => props.lastMarginRight};
   justify-content: center;
   align-items: center;
   --box-shadow-color: black;
@@ -14,8 +14,8 @@ export const OuterBox = styled.View`
 `;
 
 export const InnerBox = styled.View`
-  width: ${(props) => props.innerWidth};
-  height: ${(props) => props.innerHeight};
+  width: ${props => props.innerWidth};
+  height: ${props => props.innerHeight};
   border-radius: 10;
   justify-content: flex-end;
   align-items: center;

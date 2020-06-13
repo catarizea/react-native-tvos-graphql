@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontIcon from 'react-native-vector-icons/FontAwesome';
 import { Container } from './style';
 
-const Icon = (props) => (
+const Icon = props => (
   <Container>
     <FontIcon {...props} />
   </Container>

@@ -2,17 +2,17 @@ import styled from 'styled-components/native';
 import theme from '../../theme';
 
 export const OuterBox = styled.View`
-  height: ${(props) => props.outerHeight};
-  width: ${(props) => props.outerWidth};
-  margin-left: ${(props) => 10 + props.firstMarginLeft};
-  margin-right: ${(props) => 10 + props.lastMarginRight};
+  height: ${props => props.outerHeight};
+  width: ${props => props.outerWidth};
+  margin-left: ${props => 10 + props.firstMarginLeft};
+  margin-right: ${props => 10 + props.lastMarginRight};
   justify-content: center;
   align-items: center;
 `;
 
 export const InnerBox = styled.View`
-  width: ${(props) => props.innerWidth};
-  height: ${(props) => props.innerHeight};
+  width: ${props => props.innerWidth};
+  height: ${props => props.innerHeight};
   border-radius: 6;
   justify-content: flex-start;
   align-items: center;

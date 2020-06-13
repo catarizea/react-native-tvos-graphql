@@ -95,7 +95,7 @@ class List extends Component {
         <FlatList
           data={items}
           renderItem={({ item, index }) => this.renderItem(item, index)}
-          keyExtractor={(item) => `${childType}-${uniqueKey}-${item.id}`}
+          keyExtractor={item => `${childType}-${uniqueKey}-${item.id}`}
           horizontal={horizontal}
           onEndReached={loadMoreItems}
           onEndReachedThreshold={onEndReachedThreshold}

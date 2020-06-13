@@ -1,65 +1,26 @@
 import React from 'react';
-import ReactNative, {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Platform,
-  View,
-  Text,
-} from 'react-native';
+import { Text } from 'react-native';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { IntlProvider } from 'react-intl';
+import localeData from './i18n/translation.json';
+import get from 'lodash.get';
 
 import client from './utils/apolloClient';
+import deviceLocale from './constants/deviceLocale';
+import StoreProvider from './store/StoreProvider';
+import Navigator from './navigator';
 
-const StatusBar = Platform.isTV ? View : ReactNative.StatusBar;
+const language = get(deviceLocale, '[0].languageCode', 'en');
+const messages = localeData[language] || localeData.en;
 
-const App = () => {
-  return (
+const App = () => (
+  <IntlProvider locale={language} messages={messages} textComponent={Text}>
     <ApolloProvider client={client}>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <StoreProvider>
+        <Navigator />
+      </StoreProvider>
     </ApolloProvider>
-  );
-};
-
-const styles = StyleSheet.create({
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: 'white',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'black',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'grey',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+  </IntlProvider>
+);
 
 export default App;

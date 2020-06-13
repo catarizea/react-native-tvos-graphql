@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 const messages = defineMessages({
   featured: {
     id: 'Featured.featured',
-    defaultMessage: 'Featured movie',
+    defaultMessage: 'Featured movie man',
   },
 });
 

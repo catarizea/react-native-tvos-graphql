@@ -16,14 +16,13 @@ const DELAY = 500;
 app.use((req, res, next) => setTimeout(next, DELAY));
 
 app.use(cors());
-app.use('/graphql', jsonGraphqlExpress(db));
 
 app.get('/me', (req, res) => {
   const uuid = get(req, 'headers.uuid', null);
   if (!uuid) {
     res.sendStatus(400);
   } else {
-    getMe(uuid, (me) => {
+    getMe(uuid, me => {
       if (!me) {
         res.sendStatus(401);
       } else {
@@ -56,7 +55,7 @@ app.get('/logout', (req, res) => {
   if (!uuid) {
     res.sendStatus(400);
   } else {
-    logout(uuid, (result) => {
+    logout(uuid, result => {
       if (!result) {
         res.sendStatus(400);
       } else {
@@ -67,13 +66,18 @@ app.get('/logout', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  const uuid = get(req, 'headers.uuid', null);
+  const uuidHeaders = get(req, 'headers.uuid', null);
+  const uuidParams = get(req, 'query.uuid', null);
+  const uuid = uuidHeaders || uuidParams;
+
   if (uuid && isActivated(uuid)) {
     next();
   } else {
     res.sendStatus(401);
   }
 });
+
+app.use('/graphql', jsonGraphqlExpress(db));
 
 app.listen(PORT, () => {
   console.log(`GraphQL server is running on http://${IP}:${PORT}`);

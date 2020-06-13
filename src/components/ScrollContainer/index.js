@@ -10,7 +10,7 @@ const style = {
   paddingBottom: 0,
 };
 
-const ScrollContainer = (props) => {
+const ScrollContainer = props => {
   const { children } = props;
   return (
     <ScrollView

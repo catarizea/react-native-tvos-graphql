@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
 import { TabBarIOS } from 'react-native';
-import Navigator from './Navigator';
-import { activationRoute, homeRoute, settingRoute } from './routes';
-import theme from '../theme';
 
-const TabBar = ({ isAuthenticated }) => {
+import { StoreContext } from '../store/StoreProvider';
+import Activation from '../screens/Activation/index';
+import Home from '../screens/Home/index';
+import Settings from '../screens/Settings/index';
+
+const TabBar = () => {
   const [currentTab, setCurrentTab] = useState('home');
+  const { state } = useContext(StoreContext);
 
-  const changeTab = (selectedTab) => {
-    setCurrentTab(selectedTab);
-  };
-
-  if (!isAuthenticated) {
-    return <Navigator initialRoute={activationRoute} />;
+  if (state.isAuthenticated === false) {
+    return <Activation />;
   }
 
   return (
@@ -21,24 +19,18 @@ const TabBar = ({ isAuthenticated }) => {
       <TabBarIOS.Item
         selected={currentTab === 'home'}
         title={'Home'}
-        onPress={() => changeTab('home')}
-        badge={theme.fontFamily}>
-        <Navigator initialRoute={homeRoute} />
+        onPress={() => setCurrentTab('home')}>
+        <Home />
       </TabBarIOS.Item>
 
       <TabBarIOS.Item
-        selected={currentTab === 'setting'}
+        selected={currentTab === 'settings'}
         title={'Settings'}
-        onPress={() => changeTab('setting')}
-        badge={theme.fontFamily}>
-        <Navigator initialRoute={settingRoute} />
+        onPress={() => setCurrentTab('settings')}>
+        <Settings />
       </TabBarIOS.Item>
     </TabBarIOS>
   );
-};
-
-TabBar.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default TabBar;

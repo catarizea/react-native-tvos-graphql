@@ -3,14 +3,14 @@ import theme from '../../theme';
 
 export const Label = styled.Text`
   font-family: ${theme.fontFamily};
-  font-size: ${(props) => props.labelSize};
+  font-size: ${props => props.labelSize};
   font-weight: bold;
   color: ${theme.category.h1};
 `;
 
 export const OuterBox = styled.View`
-  height: ${(props) => props.outerHeight};
-  width: ${(props) => props.outerWidth};
+  height: ${props => props.outerHeight};
+  width: ${props => props.outerWidth};
   margin-left: 0;
   margin-right: 0;
   justify-content: center;
@@ -21,8 +21,8 @@ export const OuterBox = styled.View`
 `;
 
 export const InnerBox = styled.View`
-  width: ${(props) => props.innerWidth};
-  height: ${(props) => props.innerHeight};
+  width: ${props => props.innerWidth};
+  height: ${props => props.innerHeight};
   justify-content: center;
   align-items: center;
   overflow: hidden;
