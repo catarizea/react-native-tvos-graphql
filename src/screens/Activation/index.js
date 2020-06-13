@@ -1,35 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 
 import paths from '../../constants/apiPaths';
-import deviceInfo from '../../constants/deviceInfo';
+import { getSome } from '../../utils/apiRequests';
 import { StoreContext } from '../../store/reducer/StoreProvider';
 import { logIn } from '../../store/reducer/actions';
 import ActivationScreen from './Activation';
 
-const options = { headers: { uuid: deviceInfo.uuid } };
 const { ME, CODE } = paths;
-
-const fetchMe = async () => {
-  try {
-    const resp = await fetch(ME, options);
-    const data = await resp.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-const fetchCode = async () => {
-  try {
-    const resp = await fetch(CODE, options);
-    const data = await resp.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
 
 const ActivationContainer = () => {
   const [activationCode, setActivationCode] = useState(false);
@@ -39,17 +16,17 @@ const ActivationContainer = () => {
     let polling;
 
     const checkAuthenticated = async () => {
-      let me = await fetchMe();
+      let me = await getSome(ME);
 
       if (!me) {
-        const code = await fetchCode();
+        const code = await getSome(CODE);
 
         if (code) {
           setActivationCode(code);
         }
 
         polling = setInterval(async () => {
-          me = await fetchMe();
+          me = await getSome(ME);
           if (me) {
             logIn(dispatch);
           }
