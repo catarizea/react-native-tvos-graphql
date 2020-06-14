@@ -18,8 +18,7 @@ const Poster = React.memo(
     navigateToRoute,
   }) => {
     const handlePress = () => {
-      navigateToRoute.passProps = { item };
-      navigator.push(navigateToRoute);
+      navigator.navigate(navigateToRoute, { item });
     };
 
     const firstMarginLeft = first ? 30 : 0;
@@ -70,7 +69,7 @@ Poster.propTypes = {
   box: PropTypes.object,
   first: PropTypes.bool,
   last: PropTypes.bool,
-  navigateToRoute: PropTypes.object.isRequired,
+  navigateToRoute: PropTypes.string.isRequired,
 };
 
 Poster.defaultProps = {

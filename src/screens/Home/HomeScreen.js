@@ -13,6 +13,7 @@ const Home = props => {
     loadMoreMovies,
     categories,
     numColumns,
+    navigation,
   } = props;
 
   return (
@@ -21,27 +22,27 @@ const Home = props => {
         <List
           horizontal
           items={featured}
-          navigator={navigator}
+          navigator={navigation}
           childType={'featured'}
           uniqueKey={uniqueKeys[0]}
-          navigateToRoute={{}}
+          navigateToRoute={'Details'}
         />
         <List
           horizontal
           items={movies}
-          navigator={navigator}
+          navigator={navigation}
           childType={'poster'}
           loadMoreItems={loadMoreMovies}
           uniqueKey={uniqueKeys[1]}
-          navigateToRoute={{}}
+          navigateToRoute={'Details'}
         />
         <List
           items={categories}
-          navigator={navigator}
+          navigator={navigation}
           childType={'category'}
           uniqueKey={uniqueKeys[2]}
           numColumns={numColumns}
-          navigateToRoute={{}}
+          navigateToRoute={'Category'}
         />
       </ScrollContainer>
     </Container>
@@ -50,13 +51,12 @@ const Home = props => {
 
 Home.propTypes = {
   featured: PropTypes.array.isRequired,
-  navigator: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
   uniqueKeys: PropTypes.array.isRequired,
   movies: PropTypes.array.isRequired,
   loadMoreMovies: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   numColumns: PropTypes.number.isRequired,
-  intl: PropTypes.object.isRequired,
 };
 
 export default Home;

@@ -129,7 +129,7 @@ List.propTypes = {
   navigator: PropTypes.object.isRequired,
   uniqueKey: PropTypes.string.isRequired,
   numColumns: PropTypes.number,
-  navigateToRoute: PropTypes.object.isRequired,
+  navigateToRoute: PropTypes.string.isRequired,
 };
 
 List.defaultProps = {

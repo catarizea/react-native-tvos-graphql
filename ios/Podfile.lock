@@ -180,6 +180,8 @@ PODS:
     - React-cxxreact (= 0.61.5-1)
     - React-jsi (= 0.61.5-1)
   - React-jsinspector (0.61.5-1)
+  - react-native-safe-area-context (3.0.4):
+    - React
   - react-native-video (4.4.5):
     - React
     - react-native-video/Video (= 4.4.5)
@@ -220,11 +222,19 @@ PODS:
     - React-cxxreact (= 0.61.5-1)
     - React-jsi (= 0.61.5-1)
     - ReactCommon/jscallinvoker (= 0.61.5-1)
+  - RNCMaskedView (0.1.10):
+    - React
   - RNDeviceInfo (5.6.1):
     - React
   - RNFS (2.16.6):
     - React
+  - RNGestureHandler (1.6.1):
+    - React
   - RNLocalize (1.4.0):
+    - React
+  - RNReanimated (1.9.0):
+    - React
+  - RNScreens (2.4.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -247,6 +257,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -259,9 +270,13 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFS (from `../node_modules/react-native-fs`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -298,6 +313,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-video:
     :path: "../node_modules/react-native-video"
   React-RCTActionSheet:
@@ -320,12 +337,20 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNFS:
     :path: "../node_modules/react-native-fs"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -347,6 +372,7 @@ SPEC CHECKSUMS:
   React-jsi: bf69676a01de9180c443cf8ef004f7b0a2844c2e
   React-jsiexecutor: 1c383f2bd00c5a09f75ccc9e4b4e5de5d0d0bcb1
   React-jsinspector: 06b6bea1ed9092554dde493d3ce4a9e6ab51e407
+  react-native-safe-area-context: ef849bb471f8f18905441b798bf5072eac1175d1
   react-native-video: aa527b0acb37f94c4491e70df0274cb26979405d
   React-RCTActionSheet: df03159e3914a686fd3c81908c933ac4f2266463
   React-RCTAnimation: 95e22a02dedee3763c615dbbec0d67b2833176ce
@@ -358,9 +384,13 @@ SPEC CHECKSUMS:
   React-RCTText: 3c52bfdc330374c1d765dc254cebcb8005bd5dae
   React-RCTVibration: 213a818ab6d40c4eb4ddcfc77fda689c52a286aa
   ReactCommon: c2f62589a9a97bcfa70c84eb474582534653afd6
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: ab2ab4ca9e7f2bc4f35d62ab6ce2b66f2cbf1e7a
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNLocalize: fc27ee5878ce5a3af73873fb2d8e866e0d1e6d84
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: b5c0e1b2b04512919e78bd3898e144a157ce2363
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: 48818aaeb227b8bafffb6bec0f8cf33ee24cc346
 

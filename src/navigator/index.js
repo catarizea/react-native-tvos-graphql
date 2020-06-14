@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TabBarIOS } from 'react-native';
+import { TabBarIOS } from 'native-ios';
 import { injectIntl } from 'react-intl';
 
 import { StoreContext } from '../store/reducer/StoreProvider';

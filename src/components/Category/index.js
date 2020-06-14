@@ -6,8 +6,7 @@ import theme from '../../theme';
 
 const Category = React.memo(({ item, navigator, navigateToRoute, box }) => {
   const handlePress = () => {
-    navigateToRoute.passProps = { item };
-    navigator.push(navigateToRoute);
+    navigator.navigate(navigateToRoute, { item });
   };
 
   return <Button box={box} item={item} handlePress={handlePress} />;
@@ -17,7 +16,7 @@ Category.propTypes = {
   item: PropTypes.object.isRequired,
   navigator: PropTypes.object.isRequired,
   box: PropTypes.object,
-  navigateToRoute: PropTypes.object.isRequired,
+  navigateToRoute: PropTypes.string.isRequired,
 };
 
 Category.defaultProps = {

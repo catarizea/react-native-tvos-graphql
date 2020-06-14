@@ -30,8 +30,7 @@ const Featured = React.memo(
     navigateToRoute,
   }) => {
     const handlePress = () => {
-      navigateToRoute.passProps = { item };
-      navigator.push(navigateToRoute);
+      navigator.navigate(navigateToRoute, { item });
     };
 
     const firstMarginLeft = first ? 30 : 0;
@@ -88,7 +87,7 @@ Featured.propTypes = {
   first: PropTypes.bool,
   last: PropTypes.bool,
   intl: PropTypes.object.isRequired,
-  navigateToRoute: PropTypes.object.isRequired,
+  navigateToRoute: PropTypes.string.isRequired,
 };
 
 Featured.defaultProps = {

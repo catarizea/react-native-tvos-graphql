@@ -21,6 +21,14 @@ const messages = defineMessages({
     id: 'Screens.cartoonsTitle',
     defaultMessage: 'Cartoons Screen',
   },
+  detailsTitle: {
+    id: 'Screens.detailsTitle',
+    defaultMessage: 'Details Screen',
+  },
+  categoryTitle: {
+    id: 'Screens.categoryTitle',
+    defaultMessage: 'Category Screen',
+  },
   play: {
     id: 'Screens.play',
     defaultMessage: 'Play',

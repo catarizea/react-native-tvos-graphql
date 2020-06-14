@@ -11,6 +11,8 @@
   "Screens.showsTitle": "Shows Screen",
   "Screens.moviesTitle": "Movies Screen",
   "Screens.cartoonsTitle": "Cartoons Screen",
+  "Screens.detailsTitle": "Details Screen",
+  "Screens.categoryTitle": "Category Screen",
   "Screens.play": "Play",
   "Screens.released": "Released:",
   "Screens.genre": "Genre:",
