@@ -8,9 +8,9 @@ export const OuterBox = styled.View`
   margin-right: ${props => props.lastMarginRight};
   justify-content: center;
   align-items: center;
-  --box-shadow-color: black;
-  --box-shadow-opacity: 0.3;
-  --box-shadow-radius: 3;
+  shadow-color: black;
+  shadow-opacity: 0.3;
+  shadow-radius: 3;
 `;
 
 export const InnerBox = styled.View`

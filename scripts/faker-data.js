@@ -97,8 +97,7 @@ for (let i = 1; i <= MAX; i += 1) {
     plot: faker.lorem.paragraph(),
     poster:
       'https://i.kinja-img.com/gawker-media/image/upload/b4xfydll6qktsk9dwxve.jpg',
-    cover:
-      'https://static0.srcdn.com/wp-content/uploads/2018/01/DCEU-Wonder-Woman.jpg',
+    cover: 'https://cdn.hipwallpaper.com/i/69/13/V07gqa.jpg',
     rating: faker.finance.amount(4, 9, 1),
     boxOffice: `$${faker.finance.amount(600000, 1000000000, 0)}`,
     featured: featuredPool.indexOf(i) !== -1,

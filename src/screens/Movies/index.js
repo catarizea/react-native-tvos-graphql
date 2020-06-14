@@ -4,10 +4,10 @@ import Heading from '../../components/Heading';
 import { ContainerCenteredItems } from '../../components/Container/style';
 import messages from '../messages';
 
-const SettingsScreen = ({ intl: { formatMessage } }) => (
+const MoviesScreen = ({ intl: { formatMessage } }) => (
   <ContainerCenteredItems>
-    <Heading>{formatMessage(messages.settingsTitle)}</Heading>
+    <Heading>{formatMessage(messages.moviesTitle)}</Heading>
   </ContainerCenteredItems>
 );
 
-export default injectIntl(SettingsScreen);
+export default injectIntl(MoviesScreen);

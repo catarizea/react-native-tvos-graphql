@@ -1,3 +1,22 @@
 { "en": {
-  "Activation.activateTitle": "Activate your device using this code"
+  "Featured.featured": "Featured movie",
+  "Menu.homeTitle": "Home",
+  "Menu.settingsTitle": "Settings",
+  "Menu.showsTitle": "Shows",
+  "Menu.moviesTitle": "Movies",
+  "Menu.cartoonsTitle": "Cartooons",
+  "Activation.activateTitle": "Activate your device using this code",
+  "Screens.homeTitle": "Home",
+  "Screens.settingsTitle": "Settings Screen",
+  "Screens.showsTitle": "Shows Screen",
+  "Screens.moviesTitle": "Movies Screen",
+  "Screens.cartoonsTitle": "Cartoons Screen",
+  "Screens.play": "Play",
+  "Screens.released": "Released:",
+  "Screens.genre": "Genre:",
+  "Screens.rated": "Rated:",
+  "Screens.runtime": "Runtime:",
+  "Screens.runtimeMins": "{minutes} minutes",
+  "Screens.country": "Country:",
+  "Screens.cast": "Cast:"
 } }

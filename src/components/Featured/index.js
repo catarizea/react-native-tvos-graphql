@@ -52,6 +52,7 @@ const Featured = React.memo(
             height: innerHeight,
           }}
           underlayColor={'transparent'}
+          hasTVPreferredFocus={first}
           onPress={handlePress}>
           <InnerBox innerWidth={innerWidth} innerHeight={innerHeight}>
             <TextBox>
