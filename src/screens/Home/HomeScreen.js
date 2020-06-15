@@ -7,7 +7,6 @@ import List from '../../components/List';
 const Home = props => {
   const {
     featured,
-    navigator,
     uniqueKeys,
     movies,
     loadMoreMovies,

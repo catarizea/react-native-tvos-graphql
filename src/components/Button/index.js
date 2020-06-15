@@ -27,6 +27,7 @@ const Button = React.memo(
         <TouchableHighlight
           activeOpacity={1}
           tvParallaxProperties={tvParallaxProps}
+          hasTVPreferredFocus
           style={{
             width: innerWidth,
             height: innerHeight,
