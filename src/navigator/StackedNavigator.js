@@ -1,12 +1,12 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import TabbedNavigator from './TabbedNavigator';
 import Details from '../screens/Details';
 import Category from '../screens/Category';
 import Video from '../components/Video';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeNavigation = props => {
   return (

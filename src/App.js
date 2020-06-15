@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { enableScreens } from 'react-native-screens';
 import { Text } from 'react-native';
 import { IntlProvider } from 'react-intl';
 import localeData from './i18n/translation.json';
@@ -16,6 +17,8 @@ const messages = localeData[language] || localeData.en;
 
 console.ignoredYellowBox = ignored;
 console.disableYellowBox = true;
+
+enableScreens();
 
 const App = () => {
   return (
