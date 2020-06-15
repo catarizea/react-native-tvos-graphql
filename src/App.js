@@ -8,7 +8,7 @@ import get from 'lodash.get';
 import deviceLocale from './constants/deviceLocale';
 import StoreProvider from './store/reducer/StoreProvider';
 import ApolloProvider from './store/apollo/Provider';
-import Navigator from './navigator/TabbedNavigator';
+import Navigator from './navigator/StackedNavigator';
 import { ignored } from './constants/yellowBox';
 
 const language = get(deviceLocale, '[0].languageCode', 'en');

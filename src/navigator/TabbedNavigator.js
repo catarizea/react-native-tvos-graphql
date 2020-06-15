@@ -3,12 +3,12 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { injectIntl } from 'react-intl';
 
 import { StoreContext } from '../store/reducer/StoreProvider';
-import Activation from '../screens/Activation/index';
-import Home from '../screens/Home/index';
-import Shows from '../screens/Shows/index';
-import Movies from '../screens/Movies/index';
-import Cartoons from '../screens/Cartoons/index';
-import Settings from '../screens/Settings/index';
+import Activation from '../screens/Activation';
+import Home from '../screens/Home';
+import Shows from '../screens/Shows';
+import Movies from '../screens/Movies';
+import Cartoons from '../screens/Cartoons';
+import Settings from '../screens/Settings';
 import messages from './messages';
 
 const Tab = createMaterialTopTabNavigator();
@@ -21,7 +21,9 @@ const TabbedNavigator = ({ intl: { formatMessage } }) => {
   }
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      swipeEnabled={false}
+      initialRouteName={formatMessage(messages.homeTitle)}>
       <Tab.Screen name={formatMessage(messages.homeTitle)} component={Home} />
       <Tab.Screen name={formatMessage(messages.showsTitle)} component={Shows} />
       <Tab.Screen

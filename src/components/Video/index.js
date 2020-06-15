@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VideoPlayer from 'react-native-video-controls';
+import VideoPlayer from 'react-native-video';
 
+import { device } from '../../constants/metrics';
 import useBackButton from '../../utils/useBackButton';
 
 const style = {
   backgroundColor: '#000000',
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-  zIndex: 1000,
+  width: device.width,
+  height: device.height,
 };
 
 const Video = ({
@@ -19,21 +16,11 @@ const Video = ({
     params: { videoUri },
   },
   navigation,
+  route,
 }) => {
-  useBackButton(navigation);
+  useBackButton(navigation, route);
 
-  return (
-    <VideoPlayer
-      source={{ uri: videoUri }}
-      resizeMode={'contain'}
-      repeat={false}
-      style={style}
-      navigator={navigation}
-      disableVolume
-      disableBack
-      onEnd={() => navigation.goBack()}
-    />
-  );
+  return <VideoPlayer source={{ uri: videoUri }} style={style} />;
 };
 
 Video.propTypes = {

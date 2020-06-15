@@ -6,7 +6,7 @@ export const HorizontalContainer = styled.View`
   flex: 1;
   flex-direction: row;
   background-color: ${theme.background};
-  padding-top: 110;
+  overflow: hidden;
 `;
 
 export const ImageOuterContainer = styled.View`

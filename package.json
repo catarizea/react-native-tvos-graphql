@@ -29,7 +29,6 @@
     "lodash.truncate": "4.4.2",
     "lodash.uppercase": "4.3.0",
     "moment": "2.26.0",
-    "native-ios": "git+https://github.com/catarizea/NativeIOS.git#master",
     "prop-types": "15.7.2",
     "random-string": "0.2.0",
     "react": "16.9.0",
@@ -46,7 +45,6 @@
     "react-native-tab-view": "2.14.4",
     "react-native-vector-icons": "6.6.0",
     "react-native-video": "4.4.5",
-    "react-native-video-controls": "2.6.0",
     "styled-components": "5.1.1"
   },
   "devDependencies": {

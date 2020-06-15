@@ -7,7 +7,6 @@ export const Container = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   background-color: ${theme.background};
-  padding-top: 110;
 `;
 
 export const ContainerCenteredItems = styled.View`
@@ -15,7 +14,6 @@ export const ContainerCenteredItems = styled.View`
   justify-content: center;
   align-items: center;
   background-color: ${theme.background};
-  padding-top: 110;
 `;
 
 export const ContainerCentered = styled(Container)`

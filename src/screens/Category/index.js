@@ -6,9 +6,8 @@ import { ContainerCenteredItems } from '../../components/Container/style';
 import messages from '../messages';
 import useBackButton from '../../utils/useBackButton';
 
-const CategoryScreen = ({ intl: { formatMessage }, navigation }) => {
-  useBackButton(navigation);
-
+const CategoryScreen = ({ intl: { formatMessage }, navigation, route }) => {
+  useBackButton(navigation, route);
   return (
     <ContainerCenteredItems>
       <Heading>{formatMessage(messages.categoryTitle)}</Heading>

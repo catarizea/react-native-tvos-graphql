@@ -37,13 +37,14 @@ const Details = props => {
     },
     box,
     navigation,
+    route,
   } = props;
+
+  useBackButton(navigation, route);
 
   const scale = [6, 4];
   const ratio = scale[0] / (scale[0] + scale[1]);
   const innerRatio = 0.85;
-
-  useBackButton(navigation);
 
   const handlePlay = () => {
     if (item && item.trailer) {
@@ -122,6 +123,7 @@ const Details = props => {
             box={box}
             icon={{ name: 'play', size: 30, color: theme.category.h1 }}
             handlePress={() => handlePlay()}
+            hasTVPreferredFocus
           />
         </TextInnerContainer>
       );
