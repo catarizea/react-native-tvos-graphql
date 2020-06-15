@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { Text } from 'react-native';
 import { IntlProvider } from 'react-intl';
 import localeData from './i18n/translation.json';
@@ -7,7 +8,7 @@ import get from 'lodash.get';
 import deviceLocale from './constants/deviceLocale';
 import StoreProvider from './store/reducer/StoreProvider';
 import ApolloProvider from './store/apollo/Provider';
-import Navigator from './navigator';
+import Navigator from './navigator/TabbedNavigator';
 import { ignored } from './constants/yellowBox';
 
 const language = get(deviceLocale, '[0].languageCode', 'en');
@@ -21,7 +22,9 @@ const App = () => {
     <IntlProvider locale={language} messages={messages} textComponent={Text}>
       <StoreProvider>
         <ApolloProvider>
-          <Navigator />
+          <NavigationContainer>
+            <Navigator />
+          </NavigationContainer>
         </ApolloProvider>
       </StoreProvider>
     </IntlProvider>
