@@ -4,11 +4,9 @@ import {
   TVEventHandler,
   BackHandler,
   TVMenuControl,
-  StyleSheet,
   View,
-  Text,
+  Animated,
 } from 'react-native';
-import VideoPlayer from 'react-native-video';
 import get from 'lodash.get';
 import ProgressBar from 'react-native-progress/Bar';
 
@@ -16,27 +14,38 @@ import Icon from '../Icon';
 import { device } from '../../constants/metrics';
 import secondsToTime from '../../utils/secondsToTime';
 
+import {
+  Container,
+  Player,
+  Controls,
+  ProgressBarContainer,
+  Duration,
+} from './styles';
+
+const videoControlsPosition = {
+  maxY: device.height + 40,
+  minY: device.height - 100,
+};
+
+const springOptions = {
+  speed: 100,
+  bounciness: 7,
+};
+
+const seekStep = 10;
+
 class Video extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    paused: false,
+    progress: 0,
+    duration: 0,
+    currentTime: 0,
+    animation: new Animated.Value(videoControlsPosition.maxY),
+  };
 
-    this.state = {
-      paused: false,
-      progress: 0,
-      duration: 0,
-    };
-
-    this.tvEventHandler = null;
-    this.backButtonHandler = null;
-
-    this.enableTvHandler = this.enableTvHandler.bind(this);
-    this.disableTvHandler = this.disableTvHandler.bind(this);
-    this.enableBackButton = this.enableBackButton.bind(this);
-    this.disableBackButton = this.disableBackButton.bind(this);
-    this.handleProgress = this.handleProgress.bind(this);
-    this.handleEnd = this.handleEnd.bind(this);
-    this.handleLoad = this.handleLoad.bind(this);
-  }
+  tvEventHandler = null;
+  backButtonHandler = null;
+  toHideTimeout = null;
 
   componentDidMount() {
     this.enableTvHandler();
@@ -48,31 +57,34 @@ class Video extends Component {
     this.disableBackButton();
   }
 
-  enableTvHandler() {
+  enableTvHandler = () => {
     this.tvEventHandler = new TVEventHandler();
     this.tvEventHandler.enable(this, function(cmp, evt) {
       if (evt && evt.eventType === 'swipeRight') {
-        console.log('moved right');
+        cmp.handleMove('right');
       } else if (evt && evt.eventType === 'swipeUp') {
-        console.log('moved up');
+        cmp.handleSwipeUp();
       } else if (evt && evt.eventType === 'swipeLeft') {
-        console.log('moved left');
+        cmp.handleMove('left');
       } else if (evt && evt.eventType === 'swipeDown') {
-        console.log('moved down');
-      } else if (evt && evt.eventType === 'playPause') {
+        cmp.handleSwipeDown();
+      } else if (
+        evt &&
+        (evt.eventType === 'playPause' || evt.eventType === 'select')
+      ) {
         cmp.handlePlayPause();
       }
     });
-  }
+  };
 
-  disableTvHandler() {
+  disableTvHandler = () => {
     if (this.tvEventHandler) {
       this.tvEventHandler.disable();
       delete this.tvEventHandler;
     }
-  }
+  };
 
-  enableBackButton() {
+  enableBackButton = () => {
     const { navigation } = this.props;
 
     TVMenuControl.enableTVMenuKey();
@@ -87,22 +99,25 @@ class Video extends Component {
       'hardwareBackPress',
       backButtonHandler,
     );
-  }
+  };
 
-  disableBackButton() {
+  disableBackButton = () => {
     if (this.backButtonEventHandler) {
       this.backButtonEventHandler.remove();
     }
-  }
+  };
 
   handleProgress = progress => {
     this.setState({
+      currentTime: progress.currentTime,
       progress: progress.currentTime / this.state.duration,
     });
   };
 
   handleEnd = () => {
-    this.setState({ paused: true });
+    this.setState({ paused: true }, () => {
+      this.player.seek(0);
+    });
   };
 
   handleLoad = meta => {
@@ -111,13 +126,85 @@ class Video extends Component {
     });
   };
 
-  handlePlayPause() {
-    this.setState(state => {
-      return {
-        paused: !state.paused,
-      };
+  handlePlayPause = () => {
+    this.setState({ paused: !this.state.paused }, () => {
+      if (this.state.paused) {
+        this.showControls();
+      }
+
+      if (!this.state.paused) {
+        this.automatedHideControls();
+      }
     });
-  }
+  };
+
+  showControls = () => {
+    Animated.spring(this.state.animation, {
+      toValue: videoControlsPosition.minY,
+      ...springOptions,
+    }).start();
+
+    if (!this.state.paused) {
+      this.automatedHideControls();
+    }
+  };
+
+  hideControls = () => {
+    Animated.spring(this.state.animation, {
+      toValue: videoControlsPosition.maxY,
+      ...springOptions,
+    }).start();
+  };
+
+  handleSwipeUp = () => {
+    this.showControls();
+  };
+
+  handleSwipeDown = () => {
+    if (!this.state.paused) {
+      this.hideControls();
+    }
+  };
+
+  automatedHideControls = () => {
+    if (this.toHideTimeout) {
+      clearTimeout(this.toHideTimeout);
+    }
+
+    this.toHideTimeout = setTimeout(() => {
+      this.hideControls();
+      this.toHideTimeout = null;
+    }, 6000);
+  };
+
+  handleMove = direction => {
+    if (this.state.paused) {
+      const sign = direction === 'left' ? -1 : 1;
+
+      let seekTime = Math.max(
+        Math.min(this.state.currentTime + sign * seekStep, this.state.duration),
+        0,
+      );
+
+      this.player.seek(seekTime);
+    }
+  };
+
+  handleSeek = ({ seekTime }) => {
+    this.setState(
+      {
+        currentTime: seekTime,
+        progress: seekTime / this.state.duration,
+        paused: true,
+      },
+      () => {
+        if (this.toHideTimeout) {
+          clearTimeout(this.toHideTimeout);
+          this.toHideTimeout = null;
+        }
+      },
+    );
+  };
 
   render() {
     const videoUri = get(this.props, 'route.params.videoUri', null);
@@ -126,48 +213,50 @@ class Video extends Component {
       return null;
     }
 
-    const height = device.width * 0.5625;
+    const animationStyles = {
+      transform: [{ translateY: this.state.animation }],
+    };
 
     return (
-      <View style={styles.container}>
+      <Container>
         <View>
-          <VideoPlayer
+          <Player
             paused={this.state.paused}
             source={{ uri: videoUri }}
-            style={[styles.player, { height }]}
             onLoad={this.handleLoad}
             onProgress={this.handleProgress}
             onEnd={this.handleEnd}
+            onSeek={this.handleSeek}
             ref={ref => {
               this.player = ref;
             }}
             resizeMode={'contain'}
           />
-          <View style={styles.controls}>
+          <Controls style={animationStyles}>
             <Icon
               name={!this.state.paused ? 'pause' : 'play'}
               size={30}
               color="#FFF"
             />
-            <View style={styles.progressBar}>
+            <ProgressBarContainer>
               <ProgressBar
                 progress={this.state.progress}
                 color="#FFF"
-                unfilledColor="rgba(255,255,255,.5)"
+                unfilledColor="rgba(255,255,255,.3)"
                 borderColor="#FFF"
-                width={device.width * 0.8}
+                width={device.width * 0.84}
                 height={20}
               />
-            </View>
+            </ProgressBarContainer>
 
-            <Text style={styles.duration}>
+            <Duration>
               {secondsToTime(
                 Math.floor(this.state.progress * this.state.duration),
               )}
-            </Text>
-          </View>
+            </Duration>
+          </Controls>
         </View>
-      </View>
+      </Container>
     );
   }
 }
@@ -176,42 +265,5 @@ Video.propTypes = {
   navigation: PropTypes.object.isRequired,
   route: PropTypes.object.isRequired,
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  player: {
-    backgroundColor: '#000000',
-    width: '100%',
-  },
-  controls: {
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    height: 48,
-    left: 0,
-    bottom: 30,
-    right: 0,
-    flex: 1,
-    position: 'absolute',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingHorizontal: 20,
-  },
-  progressBar: {
-    flex: 9,
-    paddingHorizontal: 30,
-  },
-  mainButton: {
-    marginRight: 15,
-  },
-  duration: {
-    color: '#FFF',
-    marginLeft: 15,
-    fontSize: 40,
-    fontWeight: 'bold',
-    flex: 1,
-  },
-});
 
 export default Video;
