@@ -25,7 +25,6 @@ import {
 } from './style';
 import theme from '../../theme';
 import messages from '../messages';
-import useBackButton from '../../utils/useBackButton';
 
 const Details = props => {
   const {
@@ -37,10 +36,7 @@ const Details = props => {
     },
     box,
     navigation,
-    route,
   } = props;
-
-  useBackButton(navigation, route);
 
   const scale = [6, 4];
   const ratio = scale[0] / (scale[0] + scale[1]);

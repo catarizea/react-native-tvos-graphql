@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  TVEventHandler,
-  BackHandler,
-  TVMenuControl,
-  View,
-  Animated,
-} from 'react-native';
+import { TVEventHandler, View, Animated } from 'react-native';
 import get from 'lodash.get';
 import ProgressBar from 'react-native-progress/Bar';
 
@@ -49,12 +43,10 @@ class Video extends Component {
 
   componentDidMount() {
     this.enableTvHandler();
-    this.enableBackButton();
   }
 
   componentWillUnmount() {
     this.disableTvHandler();
-    this.disableBackButton();
   }
 
   enableTvHandler = () => {
@@ -81,29 +73,6 @@ class Video extends Component {
     if (this.tvEventHandler) {
       this.tvEventHandler.disable();
       delete this.tvEventHandler;
-    }
-  };
-
-  enableBackButton = () => {
-    const { navigation } = this.props;
-
-    TVMenuControl.enableTVMenuKey();
-
-    const backButtonHandler = () => {
-      navigation.goBack();
-      TVMenuControl.disableTVMenuKey();
-      return true;
-    };
-
-    this.backButtonEventHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backButtonHandler,
-    );
-  };
-
-  disableBackButton = () => {
-    if (this.backButtonEventHandler) {
-      this.backButtonEventHandler.remove();
     }
   };
 
