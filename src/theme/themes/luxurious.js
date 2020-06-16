@@ -11,6 +11,34 @@ const theme = {
   fontFamily: defaultFontFamily,
   background: rgb(navyBlue),
   heading: rgb(eggshell),
+  tabBar: {
+    style: {
+      backgroundColor: rgb(navyBlue),
+    },
+    options: {
+      activeTintColor: rgb(eggshell),
+      inactiveTintColor: rgb(eggshell),
+      pressOpacity: 0.3,
+      style: {
+        height: 72,
+        backgroundColor: rgb(navyBlue.darken(0.5)),
+      },
+      indicatorStyle: {
+        height: 2,
+        backgroundColor: rgb(eggshell),
+      },
+      tabStyle: {
+        backgroundColor: rgb(navyBlue),
+        height: 70,
+      },
+      labelStyle: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        fontFamily: defaultFontFamily,
+        textTransform: 'capitalize',
+      },
+    },
+  },
   button: {
     focused: rgb(coral),
     blured: rgb(coral.lighten(0.5)),

@@ -11,6 +11,34 @@ const theme = {
   fontFamily: defaultFontFamily,
   background: rgb(grain),
   heading: rgb(blackboard),
+  tabBar: {
+    style: {
+      backgroundColor: rgb(grain),
+    },
+    options: {
+      activeTintColor: rgb(oxblood),
+      inactiveTintColor: rgb(oxblood),
+      pressOpacity: 0.6,
+      style: {
+        height: 73,
+        backgroundColor: rgb(tan.darken(0.2)),
+      },
+      indicatorStyle: {
+        height: 3,
+        backgroundColor: 'white',
+      },
+      tabStyle: {
+        backgroundColor: rgb(tan),
+        height: 70,
+      },
+      labelStyle: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        fontFamily: defaultFontFamily,
+        textTransform: 'capitalize',
+      },
+    },
+  },
   button: {
     focused: rgb(oxblood),
     blured: rgb(oxblood.lighten(0.5)),

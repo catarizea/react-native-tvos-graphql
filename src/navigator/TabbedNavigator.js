@@ -10,6 +10,7 @@ import Movies from '../screens/Movies';
 import Cartoons from '../screens/Cartoons';
 import Settings from '../screens/Settings';
 import messages from './messages';
+import theme from '../theme';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -23,6 +24,8 @@ const TabbedNavigator = ({ intl: { formatMessage } }) => {
   return (
     <Tab.Navigator
       swipeEnabled={false}
+      style={theme.tabBar.style}
+      tabBarOptions={theme.tabBar.options}
       initialRouteName={formatMessage(messages.homeTitle)}>
       <Tab.Screen name={formatMessage(messages.homeTitle)} component={Home} />
       <Tab.Screen name={formatMessage(messages.showsTitle)} component={Shows} />

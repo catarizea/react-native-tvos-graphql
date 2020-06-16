@@ -1,3 +1,3 @@
-import theme from './themes/warm';
+import theme from './themes/clean';
 
 export default theme;

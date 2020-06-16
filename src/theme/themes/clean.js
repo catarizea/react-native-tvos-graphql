@@ -10,7 +10,35 @@ const defaultFontFamily = 'Lato';
 const theme = {
   fontFamily: defaultFontFamily,
   background: rgb(neutral),
-  heading: rgb(carbon),
+  heading: rgb(carbon.darken(0.5)),
+  tabBar: {
+    style: {
+      backgroundColor: rgb(neutral),
+    },
+    options: {
+      activeTintColor: '#FFFFFF',
+      inactiveTintColor: '#FFFFFF',
+      pressOpacity: 0.7,
+      style: {
+        height: 75,
+        backgroundColor: rgb(watermelon.darken(0.4)),
+      },
+      indicatorStyle: {
+        height: 5,
+        backgroundColor: 'white',
+      },
+      tabStyle: {
+        backgroundColor: rgb(watermelon),
+        height: 70,
+      },
+      labelStyle: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        fontFamily: defaultFontFamily,
+        textTransform: 'capitalize',
+      },
+    },
+  },
   button: {
     focused: rgb(watermelon),
     blured: rgb(watermelon.lighten(0.5)),
@@ -66,13 +94,13 @@ const theme = {
     titleSize: 25,
   },
   details: {
-    h1: rgb(carbon),
+    h1: rgb(carbon.darken(0.5)),
     h1Size: 60,
     h2: rgb(carbon),
     h3: rgb(carbon),
-    p: rgb(carbon),
+    p: rgb(carbon.darken(0.5)),
     pSize: 40,
-    infoLabel: rgb(carbon),
+    infoLabel: rgb(carbon.darken(0.5)),
     infoLabelSize: 30,
     box: {
       innerWidth: 220,
