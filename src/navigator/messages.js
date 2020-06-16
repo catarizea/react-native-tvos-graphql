@@ -19,7 +19,7 @@ const messages = defineMessages({
   },
   cartoonsTitle: {
     id: 'Menu.cartoonsTitle',
-    defaultMessage: 'Cartooons',
+    defaultMessage: 'Cartoons',
   },
 });
 
