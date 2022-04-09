@@ -29,7 +29,7 @@
     "lodash.get": "4.4.2",
     "lodash.truncate": "4.4.2",
     "lodash.uppercase": "4.3.0",
-    "moment": "2.26.0",
+    "moment": "2.29.2",
     "prop-types": "15.7.2",
     "random-string": "0.2.0",
     "react": "16.9.0",
